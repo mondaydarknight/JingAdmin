@@ -1,0 +1,104 @@
+<header-navbar></header-navbar>
+
+<main role="main">
+	<div class="container-subnav">
+		<nav class="sub-nav">
+			<!-- <ol class="breadcrumbs">
+				<li title="{{ configuration.currentDirectory }}">
+					<a href="#/">{{ configuration.currentRoute }}</a>
+				</li>
+				<li title="Documentation - Awesome Table Support">
+			        <a href="/hc/en-us">Documentation - Awesome Table Support</a>
+			    </li>
+			</ol> -->
+			<form role="search" class="search">
+				<input type="search" name="query" id="query" ng-model="query" placeholder="查詢" aria-label="Search">
+			</form>
+		</nav>
+	</div>
+	
+	<!-- <main-menu></main-menu> -->
+
+	<!-- <div class="nav">
+		<a ng-repeat="route in configuration.routes" class="horizontal-nav" ng-click="menuLocationChange($event, route)">
+    		<div class="inner-nav">
+      			<div class="inner-nav-icon">
+      				<i class="fa {{route.icon}} fa-3x fa-fw"></i>
+					<img src="//p3.zdassets.com/hc/theme_assets/1361270/115000019205/id115000315609.png" class="category-icons grey_icon">
+      			</div>
+    		</div>
+    		<div class="bottom-nav">
+      			<div class="title-container">
+        			<span class="nav-title ">{{route.subject}}</span>
+      			</div>
+    		</div>
+  		</a>
+	</div> -->
+
+	<!-- <div class="container-divider"></div> -->
+
+	<div class="container">
+		<div class="article-container">
+			
+			<section class="article-sidebar" article-sidebar>
+				<section class="section-articles collapsible-sidebar">
+					<h3 class="collapsible-sidebar-title sidenav-title">{{ configuration.routes.home.subject }}</h3>
+					<ul>
+						<li ng-repeat="category in configuration.routes.home.categories"><a href="#" class="sidenav-item" ng-click="switchHomeLocation($event, category, $index)" ng-class="{'current-article' : $index === sidebarActiveIndex}">{{ category.name }}</a></li>
+					</ul>
+				</section>
+			</section>
+
+			<article class="article" content-menu>
+				<header class="article-header">
+					<h1 class="article-title" title="Home">{{ configuration.currentRoute }}</h1>
+					
+					<div class="article-author">
+						<div class="avatar article-avatar">
+							<span class="icon-agent"></span>
+							<img src="https://support.awesome-table.com/system/photos/0001/2752/6029/logo_at_vert_yellow_circle.png" alt="Avatar" class="user-avatar"/>
+						</div>
+					</div>
+
+					<div class="article-meta">
+						<a href="#" ng-click="$event.preventDefault()">大廳</a>
+						<div class="article-updated meta-data">Updated <time datetime="2017-09-13T16:43:04Z" title="2017-09-13T16:43:04Z" data-datetime="relative">September 13, 2017 16:43</time></div>
+					</div>
+
+					<a class="article-subscribe" rel="nofollow" role="button" data-auth-action="signin" aria-selected="false" href="/hc/en-us/articles/115003762685-Sidebar/subscription">Follow</a>
+				</header>
+
+				<section class="article-info">
+					<div class="article-content">
+						<div class="article-body">
+							<p>歡迎來到系統管理者介面，請選擇您要管理的項目</p>
+						</div>
+
+						<div class="alert alert-info">
+							<p><strong>Tip:</strong> 使用快速導覽鍵</p>
+						</div>
+					</div>
+				</section>
+
+				<div class="article-comments">
+					<section class="comments">
+						<header class="commment-overview">
+							<h3 class="comment-heading">Comments</h3>
+							<p class="comment-callout">0 comments</p>
+						</header>
+						<ul id="comments" class="comment-list"></ul>
+					</section>
+				</div>
+
+
+			</article>
+
+
+		</div>
+	</div>
+
+	
+</main>
+
+
+<footer-end></footer-end>

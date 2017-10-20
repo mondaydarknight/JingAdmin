@@ -1,0 +1,43 @@
+<aside class="al-sidebar" ng-swipe-right="$SidebarService.setMenuCollapsed(false)" ng-swipe-left="$SidebarService.setMenuCollapsed(true)">
+	<ul class="al-sidebar-list" slimscroll="{'height': '{{menuHeight}}px'}" slimscroll-watch="menuHeight">
+		<li ng-repeat="item in ::menuItems" class="al-sidebar-list-item" ng-class="::{'with-sub-menu': item.subMenu}" ui-sref-active="selected" sidebar-toggle-item="item">
+			
+			<!-- Out URL LINK -->
+			<a ng-mouseenter="hoverItem($event)" ui-state="item.stateHref || ''" ng-href="{{::(item.fixedHref ? item.fixedHref : '')}}" ng-if="::!item.subMenu" class="al-sidebar-list-link">
+				<i class="{{::item.icon}}"></i><span>{{::item.title}}</span>
+			</a>
+
+			<a ng-mouseenter="hoverItem($event)" ng-if="::item.subMenu" class="al-sidebar-list-link" sidebar-ui-sref-toggle>
+				<i class="{{::item.icon}}"></i><span>{{::item.title}}</span>
+				<b class="fa fa-angle-down" ui-sref-active="fa-angle-up" ng-if="::item.subMenu"></b>
+			</a>
+
+			<ul ng-if="::item.subMenu" class="al-sidebar-sublist" ng-class="{expanded: subitem.expanded, 'slide-right': subitem.slideRight}" sidebar-ui-sref-toggle-submenu>
+				<li ng-repeat="subitem in ::item.subMenu" class="ba-sidebar-sublist-item" ng-class="::{'with-sub-menu': subitem.subMenu}" ui-sref-active="selected" sidebar-toggle-item="subitem">
+					
+					<a ng-mouseenter="hoverItem($event, subitem)" class="al-sidebar-list-link subitem-submenu-link" ng-if="::subitem.subMenu" sidebar-ui-sref-toggle>
+						<span>{{::subitem.title}}</span>
+						<b class="fa" ng-class="{'fa-angle-up': subitem.expanded, 'fa-angle-down': !subitem.expanded}" ng-if="::subitem.subMenu"></b>
+					</a>
+
+					<ul ng-if="::subitem.subMenu" class="al-sidebar-sublist subitem-submenu-list" ng-class="{expanded: subitem.expanded, 'slide-right': subitem.slideRight}" sidebar-ui-sref-toggle-submenu>
+					</ul>
+
+					<a ng-mouseenter="hoverItem($event, item)" href ng-if="::(!subitem.subMenu && subitem.disabled)" class="al-sidebar-list-link">{{::subitem.title}}</a>
+
+					<a ng-mouseenter="hoverItem($event, item)" 
+						target="{{::(subitem.blank ? '_blank' : '_self')}}" 
+						ng-if="::(!subitem.subMenu && !subitem.disabled)" 
+						ui-state="subitem.stateHref || ''"
+						ng-href="{{::(subitem.fixedHref ? subitem.fixedHref: '')}}">
+						{{::subitem.title}}		
+					</a>
+				</li>
+			</ul>
+
+		</li>
+	</ul>
+
+	<div class="sidebar-hover-elem" ng-style="{top: hoverElementTop + 'px', height: hoverElementHeight + 'px'}" ng-class="{'show-hover-elem': showHoverElement}"></div>
+
+</aside>

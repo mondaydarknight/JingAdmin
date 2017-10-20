@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="panel zoom-in ba-panel-blur">
+		<directory-breadcrumb></directory-breadcrumb>
+		<div class="panel-body">
+			<h2>顧客總覽</h2>
+
+			<article class="article">
+				<div class="article-comments" role="customer">
+					<section class="comments">
+						<header class="comment-overview">
+							<h3 class="comment-heading"></h3>
+							<div class="article-updated meta-data">Updated <time datetime="2017-09-13T16:43:04Z" title="2017-09-13T16:43:04Z" data-datetime="relative">September 13, 2017 16:43</time></div>
+							<p class="comment-callout">搜尋結果: {{members.length}}筆</p>
+							<div class="dropdown comment-sorter" uib-dropdown>
+	         					<a href="#" aria-selected="false" uib-dropdown-toggle>分類搜尋</a>
+	         					<ul class="dropdown-menu" role="menu" aria-labelledby="advancedOptions" uib-dropdown-menu>
+	         					</ul>
+	         				</div>
+						</header>
+
+						<ul class="comment-list">
+							<li class="comment" ng-repeat="member in members" ui-sref="admin.customer.detail({'memberId': member.id})">
+								<a href>
+									<div class="comment-wrapper">
+									<div class="comment-info">
+									<div class="comment-author">
+										<div class="avatar comment-avatar">
+											<img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="avatar" class="user-avatar">
+										</div>
+										<div class="comment-meta">
+											<label>
+												<a href><span>{{::member.username}}</span></a>
+											</label>
+										</div>
+										<div class="comment-meta">
+											<span class="comment-published">{{::member.email}}</span>
+										</div>
+										<div class="comment-labels">
+											<span class="comment-published">
+												<time datetime="2017-07-13T09:04:04Z" title="2017-07-13T09:04:04Z" data-datetime="calendar">July 13, 2017 09:04</time>
+											</span>
+										</div>
+									</div>
+									</div>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</section>
+				</div>
+			</article>
+		</div>
+	</div>
+</div>

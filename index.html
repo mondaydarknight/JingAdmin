@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-framework="angularjs">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+		<title>JING Administrator</title>
+		
+		<link rel="stylesheet" href="src/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="src/assets/css/ionicons.css">
+		<link rel="stylesheet" href="src/assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="src/assets/css/datetimepicker.css">
+		<link rel="stylesheet" href="src/assets/css/angular-toastr.css">
+		<link rel="stylesheet" href="src/assets/css/animate.css">
+		<link rel="stylesheet" href="src/assets/css/main.css">
+		<link rel="stylesheet" href="src/assets/css/app.css">
+		<style>[ng-cloak] { display: none; }</style>
+	</head>
+	<body>
+		
+		<main ng-class="{'menu-collapsed': $SidebarService.isMenuCollapsed()}">
+			<header-navbar></header-navbar>
+			<ui-view></ui-view>
+		</main>
+
+		<script src="src/app/vendor/jquery.min.js"></script>
+		<script src="src/app/vendor/jquery.slimscroll.js"></script>
+
+		<script src="src/app/vendor/angular.min.js"></script>
+		<script src="src/app/vendor/bootstrap.min.js"></script>
+		<script src="src/app/vendor/angular-cookie.min.js"></script>
+		<script src="src/app/vendor/angular-route.min.js"></script>
+		<script src="src/app/vendor/angular.animate.js"></script>
+		<script src="src/app/vendor/angular.sanitize.js"></script>
+		<script src="src/app/vendor/angular-toastr.js"></script>
+		<script src="src/app/vendor/angular-ui-router.js"></script>
+		<script src="src/app/vendor/angular-slimscroll.js"></script>
+		
+		<script src="src/app/vendor/angular-touch.js"></script>
+
+		<script src="node_modules/moment/moment.js"></script>
+    	<script src="node_modules/moment/locale/de.js"></script>
+    	<script src="node_modules/moment/locale/zh-cn.js"></script>
+		<script src="node_modules/angular-date-time-input/src/dateTimeInput.js"></script>
+
+		<script src="src/app/vendor/datetimepicker.js"></script>
+		<script src="src/app/vendor/datetimepicker.template.js"></script>
+
+		<script src="src/app/vendor/require.js" data-main="src/app/main"></script>
+	
+	</body>
+</html>

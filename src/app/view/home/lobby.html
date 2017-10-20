@@ -1,0 +1,61 @@
+<div class="row">
+	<div class="panel zoom-in ba-panel-blur">
+			<!-- <ol class="breadcrumbs">
+				<li><a href>Home</a></li>
+				<li><a href>Lobby</a></li>
+			</ol> -->
+			<directory-breadcrumb></directory-breadcrumb>
+		<div class="panel-body">
+			<h1>大廳</h1>
+			<p><span>使用者{{::globals.user.username}}您好，歡迎來到管理者介面</span></p>
+			<div class="alert alert-info">
+				<b><strong>Tip:</strong>使用快速導覽功能</b>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-sm-6">
+	<div class="row">
+		<div class="panel zoom-in ba-panel-blur">
+			<div class="panel-heading"><h3>近期留言</h3></div>
+			<div class="panel-body">
+				<div class="feed-message-container" trackWidth="smallContainerWidth" min-width="360">
+					<div class="feed-message" ng-repeat="message in messages" ng-click="expandMessage(message)">
+
+						<div class="message-icon" ng-if="message-type == 'text-message'">
+							<img class="photo-icon" ng-src="{{::message.author}}">
+						</div>
+						<div class="message-icon" ng-if="message-type != 'text-message'">
+							<img class="photo-icon" ng-src="{{::message.profile}}">
+							<span class="sub-photo-icon" ng-class="{{::message.type}}"></span>
+						</div>
+
+						<div class="text-block text-message">
+							<div class="message-header">
+								<span class="author">{{::message.author}}</span>
+							</div>
+							<div class="message-content line-clamp" ng-class="{'line-clamp-2': !message.expanded}">
+								<span ng-if="message-preview">{{message.header}}</span>
+								{{message.text}}
+							</div>
+							<div class="preview" ng-show="message-expanded" ng-if="message.preview">
+								<a href="{{::message.link}}" target="_blank">
+									<img ng-src="{{::message.preview}}">
+								</a>
+							</div>
+							<div ng-show="message.expanded" class="message.time">
+								<div class="post-time">
+									{{::message.time}}
+								</div>
+								<div class="ago-time">
+									{{::message.ago}}
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

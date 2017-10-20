@@ -1,0 +1,38 @@
+<form class="row form-inline" role="customer" ng-init="orderConditions = [{status: '待貨訂單', statusId: ' '},{status: '放棄訂單', statusId: 'D'},{status: '訂單完成', statusId: 'C'}]" ng-submit="advancedDateSearch($event, orderConditions)">
+	<div class="form-group col-sm-12">
+		<alert-flash></alert-flash>	
+	</div>
+
+	<div class="form-group col-sm-3" flex-gt-xs uib-dropdown>
+		<div class="input-group" uib-dropdown-toggle>
+			<input type="text" class="form-control" date-time-input="YYYY-MM-DD" ng-model="advanced.dateFrom" placeholder="開始時間" readonly>
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="advancedOptions" uib-dropdown-menu>
+        	<datetimepicker ng-model="advanced.dateFrom" datetimepicker-config="advanced.dateConfiguration" before-render=""></datetimepicker>
+        </ul>
+	</div>
+	
+	<div class="form-group col-sm-3" flex-gt-xs uib-dropdown>
+		<div class="input-group" uib-dropdown-toggle>
+			<input type="text" class="form-control" date-time-input="YYYY-MM-DD" ng-model="advanced.dateEnd" placeholder="結束時間" readonly>
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="advancedOptions" uib-dropdown-menu>
+        	<datetimepicker ng-model="advanced.dateEnd" datetimepicker-config="advanced.dateConfiguration" before-render=""></datetimepicker>
+        </ul>
+	</div>
+
+	<div class="form-group col-sm-4 col-xs-6">
+		<div class="checkbox checkbox-inline" ng-repeat="condition in orderConditions">
+			<label class="custom-checkbox">
+				<input type="checkbox" ng-model="condition.selected">
+				<span>{{::condition.status}}</span>
+			</label>
+		</div>
+		<!-- <md-checkbox ng-repeat="order in orderConditions" class="md-warn checkbox checkbox-inline" ng-model="order.selected">{{order.status}}</md-checkbox> -->
+	</div>
+	<div class="form-group col-sm-2 col-xs-6">
+		<button class="btn btn-primary btn-primary" type="submit" ng-disabled="advanced.isLoading"><i ng-class="{'fa fa-spinner fa-spin' : advanced.isLoading}"></i> 查詢</button>
+	</div>
+</form>

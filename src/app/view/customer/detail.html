@@ -1,0 +1,66 @@
+<div class="message-container" ng-class="{'expanded': navigationCollapsed}">
+	<div class="message">
+		<div class="row">
+      		<div class="toggle-navigation-container detail-page">
+        		<a href class="collapse-navigation-link ion-navicon" ng-click="tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed"></a>
+      		</div>
+      		<button ui-sref="admin.customer.manage"  type="button" class="back-button btn btn-default btn-with-icon"><i class="ion-chevron-left"></i>返回</button>
+    	</div>
+		<div class="person-info row">
+			<div class="col-lg-4 col-md-12  no-padding">
+        		<!-- <h2>顧客資訊</h2> -->
+        		<img ng-src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="human-picture" alt="avatar">
+				<div class="name">
+          			<h2 class="name-h">{{memberInfo.username}}</h2>          			
+          			<div>	
+						<span class="mail-tag tag label">{{member.tag}}</span>
+          			</div>
+        		</div>
+      		</div>
+			
+
+			<div class="col-lg-4 col-md-6 col-xs-12 no-padding">
+				<div class="contact-info phone-email">
+					<div>
+						<i class="ion-iphone"></i>
+						<span>{{memberInfo.phone}}</span>
+					</div>
+					<div>
+						<i class="ion-email"></i>
+						<span>{{memberInfo.email}}</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-xs-12 no-padding">
+				<div class="person-info position-address">
+					<div>
+						<i class="fa fa-address-card"></i>
+						<span class="address">地址:台北市萬華路120號</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="line"></div>
+		<div class="message-details">
+			<span class="subject">顧客詳細資訊</span>
+			<span class="date">10:05 AM November 22</span>	
+		</div>
+		<div class="line"></div>
+		<div class="message-body">
+			<p>消費金額: 6800</p>
+			<p>消費次數: 13</p>
+			<p>累積紅利: 500</p>
+		</div>
+		<div class="line" ng-show="detailCtrl.mail.attachment"></div>
+		<div class="line"></div>
+		<div class="answer-container">
+			<button class="btn btn-with-icon"><i class="ion-reply"></i>發送訊息</button>
+			<button class="btn btn-with-icon"><i class="ion-search"></i>查看紀錄</button>
+		</div>
+	</div>
+	<div ng-show="!memberInfo" class="text-center">
+		<h5>尚無資料</h5>
+	</div>
+</div>

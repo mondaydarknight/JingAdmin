@@ -1,0 +1,204 @@
+<header-menu></header-menu>
+
+<main role="main">
+  <div class="container-subnav">
+    <nav class="sub-nav">
+      <ol class="breadcrumbs">
+        <li title="{{ configuration.currentDirectory }}">
+          <a href="#/">{{ configuration.currentRoute }}</a>
+        </li>
+        <!-- <li title="Documentation - Awesome Table Support">
+              <a href="/hc/en-us">Documentation - Awesome Table Support</a>
+          </li> -->
+      </ol>
+    </nav>
+  </div>
+  
+  <main-menu></main-menu>
+
+  <!-- <div class="nav">
+    <a ng-repeat="route in configuration.routes" class="horizontal-nav" ng-click="menuLocationChange($event, route)">
+        <div class="inner-nav">
+            <div class="inner-nav-icon">
+              <i class="fa {{route.icon}} fa-3x fa-fw"></i>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <div class="title-container">
+              <span class="nav-title ">{{route.subject}}</span>
+            </div>
+        </div>
+      </a>
+  </div> -->
+
+  <div class="container-divider"></div>
+
+  <div class="container">
+    <div class="article-container">
+      
+      <section class="article-sidebar" article-sidebar>
+        <section class="section-articles collapsible-sidebar">
+          <h3 class="collapsible-sidebar-title sidenav-title">{{configuration.routes.order.subject}}</h3>
+          <ul>
+            <li ng-repeat="category in configuration.routes.order.categories"><a href="#" class="sidenav-item" ng-click="switchHomeLocation($event, category, $index)" ng-class="{'current-article' : $index === currentCategoryIndex}">{{category.name}}</a></li>
+          </ul>
+        </section>
+      </section>
+
+      <article class="article" content-menu>
+        <header class="article-header">
+          <h1 class="article-title" title="Home">{{configuration.currentRoute}}</h1>
+          
+          <div class="article-meta">
+            <a href="#" ng-click="$event.preventDefault()">{{configuration.routes.order.subject}}</a>
+            <div class="article-updated meta-data">Updated <time datetime="2017-09-13T16:43:04Z" title="2017-09-13T16:43:04Z" data-datetime="relative">September 13, 2017 16:43</time></div>
+          </div>
+
+          <div class="btn-group" uib-dropdown>
+            <a class="button article-subscribe" rel="button" aria-selected="false" uib-dropdown-toggle>進階查詢</a>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="advancedOptions">
+              <li role="item" ng-repeat="option in advancedOptions">
+                <a href="#" ng-click="launchAdvance($event, option)">{{option.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </header>
+
+        <section class="argicle-info">
+          <div class="article-content">
+            <div class="article-body">
+            
+              <advanced-option></advanced-option>
+              <hr>
+              <form role="search" class="search">
+                <input type="search" name="query" id="query" ng-model="query" placeholder="查詢顧客姓名" aria-label="Search" ng-change="search()">
+              </form>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <!-- <tr>
+                      <td colspan="6">
+                        <button class="btn btn-info" ng-disabled="checkboxSelected.length == 0" ng-click="modalClick('complete')">完成訂單</button>
+                        <button class="btn btn-danger pull-right" ng-disabled="checkboxSelected.length == 0" ng-click="modalClick('cancel')">取消訂單</button>
+                      </td>
+                    </tr> -->
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th><md-checkbox aria-label="select all" ng-click="toggleAllCheckbox()" class="md-primary md-align-top-left check" ng-checked="isAllChecked"></md-checkbox></th>
+                      <th><a ng-click="sort($event, transactionId)" href="#">訂單編號<i class="fa fa-sort"></i></a></a></th>
+                      <th><a ng-click="sort($event, 'username')" href="#">顧客姓名<i class="fa fa-sort"></i></a></th>
+                      <th>訂單明細</th>
+                      <th><a ng-click="sort($event, 'price')" href="#">訂單金額<i class="fa fa-sort"></i></a></th>
+                      <th><a ng-click="sort($event, 'updatedate')" href="#">結帳時間<i class="fa fa-sort"></i></a></th>
+                      <th>訂單狀態</th>
+                      <th>管理</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-if="orders.length == 0" class="text-center">
+                      <td colspan="9"><h2>尚未有訂單</h2></td>
+                    </tr>
+                    <tr ng-repeat-start="order in pageOrders[currentPage] | filter:query | orderBy:currentSort:sortReverse" ng-class="{'active' : order.status === 'D', 'bg-info' : order.status === 'C'}">
+                      <td ng-click="order.isExpanded = !order.isExpanded" class="text-center"><i ng-class="{'fa fa-angle-right fa-2x': !order.isExpanded, 'fa fa-angle-down fa-2x': order.isExpanded}"></i>
+                      </td>
+                      <td>
+                        <md-checkbox class="md-primary md-align-top-left check" ng-checked="order.isCheckboxSelected" ng-click="clickCheckbox(order, $index)" ng-if="order.status === ' '" aria-label="checkbox" flex></md-checkbox>
+                      </td>
+                      <td>{{order.transactionId}}</td>
+                      <td>{{order.username}}</td>
+                      <td><p>{{order.lists[0]}}<span ng-show="order.lists.length > 1">...</span></p></td>
+                      <!-- <td><p ng-repeat="list in order.lists">{{list}}</p></td> -->
+                      <td>{{order.price | currency}}</td>
+                      <td>{{order.updatedate}}</td>
+                      <td>{{orderStatus[order.status]}}</td>
+                      <td>
+                        <span ng-show="order.isCheckboxSelected && order.status === ' '">
+                          <button class="btn btn-info btn-xs" ng-click="modalClick('complete')">完成訂單</button>
+                          <button class="btn btn-danger btn-xs" ng-click="modalClick('cancel')">取消訂單</button>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr ng-repeat-end ng-show="order.isExpanded" ng-class="{'active' : order.status === 'D', 'bg-info' : order.status === 'C'}">
+                      <td colspan="2"></td>
+                      <td colspan="2">
+                        <!-- <div class="row"> -->
+                          <p>顧客姓名: <span>{{order.username}}</span></p>
+                          <p>配送信箱: <span>{{order.email}}</span></p>
+                          <p>顧客電話: <span>{{order.phone}}</span></p>
+                          <p>顧客住址: <span>{{order.address}}</span></p>
+                        <!-- </div>  -->
+                      </td>
+                      <td colspan="2">
+                        <span>訂單明細:<p ng-repeat="list in order.lists"><strong>{{list}}</strong></p></span>
+                        <p>留言: <span>{{order.message}}</span></p>
+                      </td>
+                      <td colspan="3">    
+                        <div class="row">
+                          <p>銀行後五碼: <strong>{{order.bankAccount}}</strong></p>
+                          <p>運費: <span>{{order.fee}}</span></p>
+                          <p>配送方式: <span>{{order.deliver}}</span></p>
+                        </div>                        
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="text-center">
+              <nav class="pagination">
+                <ul>
+                  <li ng-repeat="page in pageOrders" ng-class="{'pagination-current': $index === currentPage}" ng-click="setPage($index)">
+                    <span>{{$index + 1}}</span>
+                  </li>
+                  <!-- <li>
+                  <a href="/hc/en-us/profiles/8724302245-Awesome-Table?filter_by=articles&amp;page=2&amp;sort_by=recent_user_activity#"  rel="next">2</a>
+                </li> -->
+                </ul>
+              </nav>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- <div class="article-comments">
+          <section class="comments">
+            <header class="commment-overview">
+              <h3 class="comment-heading">Comments</h3>
+              <p class="comment-callout">0 comments</p>
+            </header>
+            <ul id="comments" class="comment-list"></ul>
+          </section>
+        </div> -->
+
+      </article>
+
+
+    </div>
+  </div>
+</main>
+
+<footer-end></footer-end>
+
+<script type="text/ng-template" id="check-order-modal.html">
+  <div class="modal-header">
+    <h2 class="modal-title">{{mode.name}}<button type="button" class="close" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times</span></button></h2>
+  </div>
+  <div class="modal-body">
+    <section class="section">
+      <h3 class="section-tree-title">{{mode.name}}</h3>
+      <ul class="article-list">
+        <li class="article-list-item" ng-repeat="order in orders">
+          <a href="#" class="article-list-link" ng-click="$event.preventDefault()"><i class="fa fa-angle-right"></i>訂單編號: {{order.transactionId}} 顧客姓名: {{order.username}} 交易金額: {{order.price}} 結帳時間: {{order.updatedate}}</a>
+        </li>
+      </ul>
+      <h3>{{mode.text}}</h3>
+    </section>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-info" ng-click="confirm()">確定</button>
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
+  </div>
+</script>
+

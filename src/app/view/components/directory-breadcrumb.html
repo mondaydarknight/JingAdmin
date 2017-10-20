@@ -1,0 +1,10 @@
+<div class="panel-heading" style="height: 60px;">
+<div class="breadcrumbs">
+	<ul class="breadcrumb">
+		<li ng-repeat="directory in globals.directories" ng-class="{'active': $last}">
+			<i class="ace-icon {{::directory.icon}}"></i>
+			<a href>{{::directory.root}}</a>
+		</li>
+	</ul>
+</div>
+</div>

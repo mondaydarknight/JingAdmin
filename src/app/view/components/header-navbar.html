@@ -1,0 +1,65 @@
+<!-- <header>
+	<nav class="navbar navbar-inverse bg-inverse" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">{{ user.username }}</a>
+		</div>
+		<div class="collapse navbar-collapse" uib-collapse="isCollapsed">
+			<ul class="nav navbar-nav">
+				<li ng-repeat="menu in menus" ng-class="{active: $first}">
+					<a href="#{{ menu.subject }}" ng-click="menuClick($event)"><i class=""></i>{{ menu.subject }}</a>
+				</li>
+			</ul>
+			<form class="navbar-form pull-right" role="logout">
+				<div class="input-group">
+					<div class="input-group-btn">
+						<a class="btn btn-info btn-sm" href="#/login" ng-click="logout($event)">Logout</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</nav>
+</header> -->
+
+<!-- <header class="header">
+	<div class="logo" style="margin-left: 20px;">
+		<a title="Home" href="#"><h2 style="color: #ffffff;">Administrator</h2></a>
+	</div>
+	<div class="nav-wrapper">
+		<span class="icon-menu"></span>
+		<nav class="user-nav"></nav>
+		<a href="#" ng-click="logout($event)">{{loginLogoutText}}</a>
+	</div>
+</header> -->
+
+<header class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+	<a ng-href="{{::originalLocation}}" class="al-logo clearfix">Administrator</a>
+	
+	<a href class="collapse-menu-link ion-navicon" sidebar-toggle-menu ng-show="isAuthenticated"></a>
+
+	<div class="search" ng-show="isAuthenticated">
+		<i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+		<input type="text" placeholder="Search for...">
+	</div>
+
+	<div class="user-profile clearfix" ng-show="isAuthenticated">
+		<div class="al-user-profile" uib-dropdown>
+			<a href uib-dropdown-toggle class="profile-toggle-link">
+				<img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
+			</a>
+
+			<ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+				<li><i class="dropdown-arr"></i></li>
+				<li><a href><i class="fa fa-user"></i>Profile</a></li>
+				<li><a href ng-click="logout($event)"><i class="fa fa-power-off"></i>Logout</a></li>
+			</ul>
+		</div>
+	</div>
+
+</header>
+

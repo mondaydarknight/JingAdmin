@@ -1,0 +1,122 @@
+<div class="row">
+	<div class="panel ba-panel-blur">
+		<directory-breadcrumb></directory-breadcrumb>
+		<div class="panel-body">
+			<article class="article">
+				<header class="article-header">
+					<h3>訂單管理</h3>
+					<div class="article-meta">
+            			<a href">上次更新</a>
+            			<div class="article-updated meta-data">
+            				<time datetime="2017-09-13T16:43:04Z" title="2017-09-13T16:43:04Z" data-datetime="relative">September 13, 2017 16:43</time>
+            			</div>
+          			</div>
+          			<advanced-option></advanced-option>
+				</header>
+
+				<section class="article-info">
+					<div class="article-content">
+					<div class="article-body">
+					<advanced-option-content></advanced-option-content>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+							<tr>
+								<th></th>
+                      			<th><div><label class="custom-checkbox checkbox-inline"><input type="checkbox" ng-click="toggleAllCheckbox()" ng-checked="isAllChecked"><span>全選</span></label></div></th>
+                      			<th><a ng-click="sort($event, transactionId)" href>訂單編號<i class="fa fa-sort"></i></a></a></th>
+                      			<th><a ng-click="sort($event, 'username')" href>顧客姓名<i class="fa fa-sort"></i></a></th>
+                      			<th>訂單明細</th>
+                      			<th><a ng-click="sort($event, 'price')" href>訂單金額<i class="fa fa-sort"></i></a></th>
+                      			<th><a ng-click="sort($event, 'updatedate')" href>結帳時間<i class="fa fa-sort"></i></a></th>
+                      			<th>訂單狀態</th>
+                      			<th>管理</th>
+                    		</tr>
+							</thead>
+							<tbody>
+                    			<tr ng-show="orders.length == 0" class="text-center">
+                      				<td colspan="9"><h1>尚未有訂單</h1></td>
+                    			</tr>
+                    			<tr ng-repeat-start="order in pageOrders[currentPage] | filter:query | orderBy:currentSort:sortReverse" ng-class="{'active' : order.status === 'D', 'bg-success' : order.status === 'C'}">
+	                      			<td ng-click="order.isExpanded = !order.isExpanded" class="text-center"><i ng-class="{'fa fa-angle-right fa-2x': !order.isExpanded, 'fa fa-angle-down fa-2x': order.isExpanded}"></i></td>
+	                      			<td>
+	                      				<div><label class="custom-checkbox checkbox-inline"><input type="checkbox" ng-checked="order.isCheckboxSelected" ng-click="clickCheckbox(order, $index)" ng-show="order.status === ' '"><span></span></label></div>
+	                      			</td>
+	                      			<td>{{order.transactionId}}</td>
+	                      			<td>{{order.username}}</td>
+	                      			<td><p>{{order.lists[0]}}<span ng-show="order.lists.length > 1">...</span></p></td>
+	                      			<td>{{order.price | currency}}</td>
+	                      			<td>{{order.updatedate}}</td>
+	                      			<td>{{orderStatus[order.status]}}</td>
+	                      			<td>
+	                        			<span ng-show="order.isCheckboxSelected && order.status === ' '">
+	                          			<button class="btn btn-info btn-xs" ng-click="modalClick('complete')">完成訂單</button>
+	                          			<button class="btn btn-danger btn-xs" ng-click="modalClick('cancel')">取消訂單</button>
+	                        			</span>
+	                      			</td>
+                    			</tr>
+                    			<tr ng-repeat-end ng-class="{'active' : order.status === 'D', 'bg-success' : order.status === 'C'}" order-detail-expand="order.isExpanded">
+                      				<td colspan="2"></td>
+                      				<td colspan="2">
+                          			<p>顧客姓名: <span>{{order.username}}</span></p>
+                          			<p>配送信箱: <span>{{order.email}}</span></p>
+                          			<p>顧客電話: <span>{{order.phone}}</span></p>
+                          			<p>顧客住址: <span>{{order.address}}</span></p>
+                      				</td>
+                      				<td colspan="2">
+                        				<span>訂單明細:<p ng-repeat="list in order.lists"><strong>{{list}}</strong></p></span>
+                        				<p>留言: <span>{{order.message}}</span></p>
+                      				</td>
+                      				<td colspan="3">    
+                        				<div class="row">
+                          					<p>銀行後五碼: <strong>{{order.bankAccount}}</strong></p>
+                          					<p>運費: <span>{{order.fee}}</span></p>
+                          					<p>配送方式: <span>{{order.deliver}}</span></p>
+                        				</div>                        
+                      				</td>
+                    			</tr>
+                  			</tbody>
+						</table>
+					</div>
+
+					<div class="text-center">
+						<nav class="pagination">
+							<ul>
+								<li ng-repeat="page in pageOrders" ng-class="{'pagination-current': $index === currentPage}" ng-click="setPage($index)">
+									<span>{{::$index+1}}</span>
+								</li>
+							</ul>
+						</nav>
+					</div>
+
+					</div>
+					</div>
+				</section>
+			</article>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="modal-check-order.html">
+	<div class="modal-header">
+    	<h2 class="modal-title">{{mode.name}}<button type="button" class="close" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times</span></button></h2>
+  	</div>
+	<div class="modal-body">
+		<section class="section">
+			<ul class="article-list">
+				<li class="article-list-item" ng-repeat="order in orders">
+					<a href class="article-list-link">
+						<i class="fa fa-angle-right"></i>
+						訂單編號: {{::order.transactionId}} 顧客姓名: {{::order.username}} 交易金額: {{::order.price}} 結帳時間: {{::order.updatedate}}
+					</a>
+				</li>
+			</ul>
+			<h3>{{::mode.text}}</h3>
+		</section>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="confirm()">確認</button>
+		<button class="btn btn-default" ng-click="cancel()">取消</button>
+	</div>
+</script>

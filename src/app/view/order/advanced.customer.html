@@ -1,0 +1,21 @@
+<form class="row form-inline" role="customer" ng-init="orderConditions = [{status: '待貨訂單', statusId: ' '},{status: '放棄訂單', statusId: 'D'},{status: '訂單完成', statusId: 'C'}]" ng-submit="advancedCustomerSearch($event, orderConditions)">
+	<div class="form-group col-sm-12">
+		<label>請輸入顧客姓名</label>
+		<alert-flash></alert-flash>	
+	</div>
+	<div class="form-group col-sm-4">
+		<input type="text" class="form-control" name="customer" ng-model="advanced.customer" placeholder="請輸入顧客姓名" required autofocus>
+	</div>
+	<div class="form-group col-sm-6 col-xs-6">
+		<div class="checkbox checkbox-inline" ng-repeat="condition in orderConditions">
+			<label class="custom-checkbox">
+				<input type="checkbox" ng-model="condition.selected">
+				<span>{{::condition.status}}</span>
+			</label>
+		</div>
+		<!-- <md-checkbox ng-repeat="order in orderConditions" class="md-warn checkbox checkbox-inline" ng-model="order.selected">{{order.status}}</md-checkbox> -->
+	</div>
+	<div class="form-group col-sm-2 col-xs-6">
+		<button class="btn btn-primary btn-primary" type="submit" ng-disabled="advanced.isLoading"><i ng-class="{'fa fa-spinner fa-spin' : advanced.isLoading}"></i> 查詢</button>
+	</div>
+</form>

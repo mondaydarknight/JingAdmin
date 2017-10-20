@@ -1,0 +1,76 @@
+<div class="main-layout">
+<div class="container" style="margin-top: 20px;">
+	<div class="breadcrumbs">
+	    <ul class="breadcrumb">
+	        <li>
+	           	<i class="ace-icon fa fa-home home-icon"></i>
+	            <a href>Home</a>
+	        </li>
+	        <li class="active"><a href>Login</a></li>
+	    </ul>
+	</div>
+
+	<div class="page-content">
+	<div class="row">
+	<div class="col-sm-10 col-md-offset-1">
+
+	<div class="login-box visible widget-box no-border">
+	<div class="widget-box">
+	<div class="widget-main">
+	<h3>Login</h3>
+	<!-- <h3 class="lighter bigger"><i class="icon-coffee green"></i>Login</h3> -->
+	<form name="form" class="form-horizontal" ng-submit="login($event)" role="form" novalidate>
+		<alert-flash></alert-flash>
+		<div class="form-group" ng-class="{'has-error': form.email.$dirty && form.email.$invalid}">
+			<label class="col-sm-3 control-label no-padding-right" for="email"><i class="ace-icon fa fa-user"></i> Email </label>
+			<div class="col-sm-7">
+				<span class="block input-icon input-icon-right">
+					<input type="email" class="form-control" placeholder="Email" name="email" ng-model="user.email" required autofocus/>
+				</span>
+				<span ng-show="form.email.$dirty && form.email.$invalid" class="help-block">Email format error</span>
+			</div>
+		</div>
+		<div class="form-group" ng-class="{'has-error': form.password.$dirty && form.password.$invalid}">
+			<label class="col-sm-3 control-label no-padding-right" for="email"><i class="ace-icon fa fa-lock"></i> Password </label>
+			<div class="col-sm-7">
+				<span class="block input-icon input-icon-right">
+					<input type="password" class="form-control" placeholder="Password" name="password" ng-model="user.password" required autofocus/>
+				</span>
+				<span ng-show="form.password.$dirty && form.password.$invalid" class="help-block">Password Error</span>
+			</div>
+		</div>
+		<label class="col-sm-3 control-label no-padding-right"></label>
+		<div class="form-actions col-sm-7">
+            <div class="pull-right">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Login</button>
+            <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>	
+		</div>
+		
+		<div class="space-4"></div>
+		<span class="col-sm-3"></span>
+		<span class="col-sm-7">
+			Don't have account?
+			<a href="#/signUp">SignUp</a>
+		</span>
+		<!-- <div class="form-group" ng-class="{'has-error': form.email.$dirty && form.email.$invalid}">
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email" class="form-control" ng-model="user.email" required autofocus />
+			<span ng-show="form.email.$dirty && form.email.$invalid" class="help-block">Email is Error</span>
+		</div> -->
+		<!-- <div class="form-group" ng-class="{'has-error': form.password.$dirty && form.password.$invalid}">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" class="form-control" ng-model="user.password" required />
+			<span ng-show="form.password.$dirty && form.password.$invalid" class="help-block">Password is Error</span>
+		</div> -->
+	</form>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
+</div>
+
+
